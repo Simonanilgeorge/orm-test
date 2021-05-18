@@ -10,8 +10,15 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 api=Api(app)
 
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 # add resources
 api.add_resource(UserResource,'/users')
+
+
 
 if __name__=="__main__":
     from db import db
