@@ -6,7 +6,15 @@ GET http://localhost:6000/users
 POST http://localhost:6000/users
 Content-Type: application/json
 
+{"inputs":[{
+    "name":"test name",
+    "age":16
+},
 {
-    "name":"new name",
+    "name":"test name 2",
     "age":26
+}]
 }
+###
+
+DELETE http://localhost:6000/users

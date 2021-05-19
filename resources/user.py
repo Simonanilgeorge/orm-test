@@ -9,40 +9,67 @@ class UserResource(Resource):
  
     # add arguments using parser
 
+    # parser.add_argument(
+    #     "name",
+    #     type=str
+    # )
+    # parser.add_argument(
+    #     "age",
+    #     type=int
+    # )
+
     parser.add_argument(
-        "name",
-        type=str
+        "inputs",
+        type=dict,
+        action="append"
     )
-    parser.add_argument(
-        "age",
-        type=int
-    )
+
+
 
 
     def post(self):
 
         # get the arguments using parser
         
-        data=UserResource.parser.parse_args()
+        data=UserResource.parser.parse_args()        
+        print((data["inputs"][0]))
+
+        jsondata=data["inputs"][0]
+        print(jsondata["name"])
+        
+
+        return  {"message":"users added"}
         user=UserModel(data["name"],data["age"])
         # print(f"user : {json.dumps(user.__dict__)}")
-        print(f"user : {jsonify(user)}")
-        print()
+       
+        
         user.saveToDb()
-        return data
+        user=user.convert()
+        print(f"user to be added is {user}")
+        
+     
+        # return json.dumps(user)
+        return {"message":"added"}
     
     def get(self):
         
         data=UserModel.getUsers()
-        list=[UserResource.convert(data) for data in data]        
+        list=[data.convert() for data in data]        
         return json.dumps(list,sort_keys=True)
     
+
+    # delete
     def delete(self):
-        return 
+        data=UserModel.getUsers()
+        for data in data:
+            data.deleteFromDb()
+
+        return {"message":"data deleted"}
     
-    @classmethod
-    def convert(cls,data):
-        data=data.__dict__
-        data.pop("_sa_instance_state")
-        return data
+    # @classmethod
+    # def convert(cls,data):
+    #     data=data.__dict__
+    #     print(data)
+    #     data.pop("_sa_instance_state")
+    #     return data
 
