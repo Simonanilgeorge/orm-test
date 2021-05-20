@@ -7,12 +7,24 @@ POST http://localhost:6000/users
 Content-Type: application/json
 
 {"inputs":[{
-    "name":"test name",
-    "age":16
+    "name":"test name 1",
+    "age":16,
+    "count":true
 },
 {
     "name":"test name 2",
-    "age":26
+    "age":26,
+    "count":false
+},
+{
+    "name":"test name 3",
+    "age":36,
+    "count":true
+},
+{
+    "name":"test name 4",
+    "age":66,
+    "count":false
 }]
 }
 ###

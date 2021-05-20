@@ -32,10 +32,10 @@ class UserResource(Resource):
         # get the arguments using parser
         
         data=UserResource.parser.parse_args()        
-        print((data["inputs"][0]))
-
-        jsondata=data["inputs"][0]
-        print(jsondata["name"])
+        print(data)
+        for data in data["inputs"]:
+            user=UserModel(data["name"],data["age"],data["count"])
+            user.saveToDb()
         
 
         return  {"message":"users added"}
@@ -53,8 +53,16 @@ class UserResource(Resource):
     
     def get(self):
         
-        data=UserModel.getUsers()
-        list=[data.convert() for data in data]        
+        # users=UserModel.getUsers()
+
+        count=UserModel.getCount()
+
+        # print(f"list of users is {users}")
+        
+        print(f"Count is :{count}")
+        list=[count.convert() for count in count]
+
+        print(list)        
         return json.dumps(list,sort_keys=True)
     
 

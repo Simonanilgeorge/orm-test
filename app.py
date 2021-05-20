@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
 from resources.user import UserResource
+from models.user import UserModel
 
 
 app=Flask(__name__)
@@ -13,6 +14,7 @@ api=Api(app)
 
 @app.before_first_request
 def create_tables():
+    # db.drop_all()
     db.create_all()
 
 # add resources
