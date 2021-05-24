@@ -22,11 +22,10 @@ class UserModel(db.Model):
         self.age=age
         self.count=count
 
-    def saveToDb(self):
 
+    def saveToDb(self):
        
-        db.session.add(self)
-       
+        db.session.add(self)    
         db.session.commit()
 
 # method to delete from db
@@ -56,9 +55,13 @@ class UserModel(db.Model):
         # count=db.session.query(UserModel).count()
 
         # get users with count=true
-        users=db.session.query(UserModel).filter(UserModel.count==False).all()
+        users=db.session.query(UserModel).all()
+        # users=db.session.query(UserModel).filter(UserModel.count==False).all()
         return users
-        
+    @classmethod
+    def getSingleEmployee(cls,ID):
+        employee=db.session.query(UserModel).filter(UserModel.id==ID).first()
+        return employee
     # def __str__(self):
     #     return f"name : {self.name}, age : {self.age}"
     # def __repr__(self):

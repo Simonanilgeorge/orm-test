@@ -1,32 +1,32 @@
 ###
-GET http://localhost:6000/users
+GET http://localhost:6001/users
 
 ###
 
-POST http://localhost:6000/users
+POST http://localhost:6001/users
 Content-Type: application/json
 
 {"inputs":[{
-    "name":"test name 1",
+    "id":2,
+    "name":"Vivek udpate",
     "age":16,
     "count":true
-},
-{
-    "name":"test name 2",
-    "age":26,
-    "count":false
-},
-{
-    "name":"test name 3",
-    "age":36,
-    "count":true
-},
-{
-    "name":"test name 4",
-    "age":66,
-    "count":false
 }]
 }
 ###
 
-DELETE http://localhost:6000/users
+DELETE http://localhost:6001/users
+
+
+### 
+PUT http://localhost:6001/users
+Content-Type: application/json
+
+{"inputs":[{
+    "id":1,
+    "name":"SIMON UPDATE 2",
+    "age":16,
+    "count":true
+}
+]
+}

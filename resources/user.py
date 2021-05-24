@@ -55,12 +55,12 @@ class UserResource(Resource):
         
         # users=UserModel.getUsers()
 
-        count=UserModel.getCount()
+        users=UserModel.getUsers()
 
         # print(f"list of users is {users}")
         
-        print(f"Count is :{count}")
-        list=[count.convert() for count in count]
+        print(f"users is :{users}")
+        list=[users.convert() for users in users]
 
         print(list)        
         return json.dumps(list,sort_keys=True)
@@ -74,6 +74,22 @@ class UserResource(Resource):
 
         return {"message":"data deleted"}
     
+
+    def put(self):
+        data=UserResource.parser.parse_args() 
+        
+        EID=data["inputs"][0]["id"]
+        print(f"id : {EID}")
+        employee=UserModel.getSingleEmployee(EID)
+        print(f"employee to be upadated")
+        employee.name=data["inputs"][0]["name"]
+
+        employee.saveToDb()
+
+        return {"message":"user udpated"}
+
+
+
     # @classmethod
     # def convert(cls,data):
     #     data=data.__dict__
