@@ -1,0 +1,12 @@
+
+
+
+
+
+
+{'__module__': 'models.user', '__tablename__': 'users', 'id': <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x105a56f90>, 'name': <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x105a5a090>, 'age': <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x105a5a130>, 'count': <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x105a5a1d0>, 'marks': <sqlalchemy.orm.attributes.InstrumentedAttribute object at 0x105a5a270>, '__init__': <function __init__ at 0x105a33c10>, 'saveToDb': <function UserModel.saveToDb at 0x105a334c0>, 'deleteFromDb': <function UserModel.deleteFromDb at 0x105a335e0>, 'convert': <function UserModel.convert at 0x105a33670>, 'getUsers': <classmethod object at 0x105a2c2b0>, 'getTotalMarks': <classmethod object at 0x105a2c2e0>, 'getCount': <classmethod object at 0x105a2c310>, 'getSingleUser': <classmethod object at 0x105a2c340>, '__doc__': None, '__table__': Table('users', MetaData(bind=None), Column('id', Integer(), table=<users>, primary_key=True, nullable=False), Column('name', String(length=80), table=<users>), Column('age', Integer(), table=<users>), Column('count', Boolean(), table=<users>), Column('marks', Float(), table=<users>), schema=None), '_sa_class_manager': <ClassManager of <class 'models.user.UserModel'> at 105a4c310>, '__mapper__': <Mapper at 0x105a2c550; UserModel>}
+
+
+[(2, 'Doe', 26, True, 80.0), (3, 'Michael', 33, False, 56.0), (4, 'John', 33, False, 100.0)]
+users is :
+[(2, 'Doe', 26, True, 80.0), (3, 'Michael', 33, False, 56.0), (4, 'John', 33, False, 100.0)]

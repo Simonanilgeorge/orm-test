@@ -10,7 +10,8 @@ Content-Type: application/json
     "id":2,
     "name":"Vivek udpate",
     "age":16,
-    "count":true
+    "count":true,
+    "marks":100
 }]
 }
 ###

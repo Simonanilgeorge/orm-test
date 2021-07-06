@@ -34,7 +34,7 @@ class UserResource(Resource):
         data=UserResource.parser.parse_args()        
         print(data)
         for data in data["inputs"]:
-            user=UserModel(data["name"],data["age"],data["count"])
+            user=UserModel(data["name"],data["age"],data["count"],data["marks"])
             user.saveToDb()
         
 
@@ -52,18 +52,25 @@ class UserResource(Resource):
         return {"message":"added"}
     
     def get(self):
-        
-        # users=UserModel.getUsers()
-
-        users=UserModel.getUsers()
-
-        # print(f"list of users is {users}")
-        
-        print(f"users is :{users}")
+        # get all users
+        users=UserModel.getUsers()     
+        # print(f"users is :{users}")
         list=[users.convert() for users in users]
-
-        print(list)        
+        # print(list)        
         return json.dumps(list,sort_keys=True)
+
+        # get count
+        # count=UserModel.getCount()
+
+        # print(f"count is {count}")
+
+        # return {"count":"count"}
+
+        # get total marks
+        
+        # marks=UserModel.getTotalMarks()
+        # print(f"marks {marks[0]}")
+        # return {"marks":marks[0]}
     
 
     # delete
@@ -80,11 +87,11 @@ class UserResource(Resource):
         
         EID=data["inputs"][0]["id"]
         print(f"id : {EID}")
-        employee=UserModel.getSingleEmployee(EID)
-        print(f"employee to be upadated")
-        employee.name=data["inputs"][0]["name"]
+        user=UserModel.getSingleUser(EID)
+        print(f"user to be upadated")
+        user.name=data["inputs"][0]["name"]
 
-        employee.saveToDb()
+        user.saveToDb()
 
         return {"message":"user udpated"}
 
