@@ -1,14 +1,14 @@
 ###
-GET http://localhost:6001/users
+GET http://localhost/api/users
 
 ###
 
-POST http://localhost:6001/users
+POST http://localhost/api/users
 Content-Type: application/json
 
 {"inputs":[{
     "id":2,
-    "name":"Vivek udpate",
+    "name":"abc",
     "age":16,
     "count":true,
     "marks":100
@@ -25,9 +25,23 @@ Content-Type: application/json
 
 {"inputs":[{
     "id":1,
-    "name":"SIMON UPDATE 2",
+    "name":"abc",
     "age":16,
     "count":true
 }
 ]
 }
+
+
+###
+POST http://localhost/api/stores
+Content-Type: application/json
+
+{
+    "name":"store 1"
+}
+
+###
+
+GET http://localhost/api/stores
+

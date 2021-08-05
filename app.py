@@ -2,6 +2,8 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
 from resources.user import UserResource
+from resources.store import StoreResource,SingleStoreResource
+
 from models.user import UserModel
 from flask_cors import CORS
 from db import db
@@ -25,11 +27,14 @@ def create_tables():
     db.create_all()
 
 # add resources
-api.add_resource(UserResource,'/users')
+api.add_resource(UserResource,'/api/users')
+api.add_resource(StoreResource,'/api/stores')
+api.add_resource(SingleStoreResource,"/api/stores/<string:id>")
 
 
 
 if __name__=="__main__":
 
     # app.run(host='0.0.0.0',port=5000)
+    
     app.run(host='0.0.0.0',port=5000,debug=True)
