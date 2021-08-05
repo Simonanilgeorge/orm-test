@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+
+  python:
+
+    image: orm-app
+    container_name: orm-app
+    restart: always
+    command: python app.py
+    # command: gunicorn --bind 0.0.0.0:5000 -w 3 -t 100 app:app
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 5000:5000
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf 
+    ports:
+     - 80:80
+  
+  
+    
