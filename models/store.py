@@ -23,6 +23,17 @@ class StoreModel(db.Model):
         db.session.add(self)
         db.session.commit()
     
+    def convert(self):
+        data=self.__dict__
+        # print(data)
+        data.pop("_sa_instance_state")
+        
+        return data
+
+    @classmethod
+    def getAllStores(cls):
+        return db.session.query(StoreModel).all()
+    
 
 
 

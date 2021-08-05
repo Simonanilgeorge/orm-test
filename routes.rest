@@ -34,14 +34,14 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost/api/stores
+POST http://localhost:5000/api/stores
 Content-Type: application/json
 
 {
-    "name":"store 1"
+    "name":"store"
 }
 
 ###
 
-GET http://localhost/api/stores
+GET http://localhost:5000/api/stores
 

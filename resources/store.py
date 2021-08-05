@@ -7,28 +7,43 @@ from flask import jsonify
 
 class StoreResource(Resource):
     
-    def get(self):
-
-        return {"message":"All stores"}
     
-
-    def post(self):
-        data=SingleStoreResource.parser.parse_args()
-        name=data["name"]
-        store=StoreModel(name)
-        store.saveToDb()
-        return {"message":"store added"}    
-
-
-class SingleStoreResource(Resource):
-
     parser=reqparse.RequestParser()
     
     parser.add_argument(
         "name",
         type=str,
-        action="append"
+
     )
+
+
+    
+    def get(self):
+
+        stores=StoreModel.getAllStores()
+        
+        list=[store.convert() for store in stores]
+
+        return {"stores":list}
+    
+
+    def post(self):
+        data=StoreResource.parser.parse_args()
+        print(data)
+        name=data["name"]
+        print(name)
+        store=StoreModel(name)
+        store.saveToDb()
+        return {"message":"store added"}  
+       
+
+  
+
+
+class SingleStoreResource(Resource):
+
+
+    
 
 
     def get(self,id):
