@@ -3,6 +3,10 @@ from models.user import UserModel
 from models.store import StoreModel
 import json
 from flask import jsonify
+import time
+from datetime import datetime
+
+
 
 
 class StoreResource(Resource):
@@ -20,7 +24,17 @@ class StoreResource(Resource):
     
     def get(self):
 
+        print("test")
+        # start_time=time.time()
+        start_time=datetime.now()
+        print(f"start time {start_time}",flush=True)
+
+        # for gunicorn 
+
+
         stores=StoreModel.getAllStores()
+
+        print(f"end time {datetime.now()}",flush=True)
         
         list=[store.convert() for store in stores]
 

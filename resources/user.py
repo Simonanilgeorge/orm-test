@@ -1,7 +1,9 @@
+from re import T
 from flask_restful import Resource,reqparse
 from models.user import UserModel
 import json
 from flask import jsonify
+import time
 
 class UserResource(Resource):
 
@@ -24,19 +26,22 @@ class UserResource(Resource):
         action="append"
     )
 
+    
+
 
 
 
     def post(self):
 
         # get the arguments using parser
-        
         data=UserResource.parser.parse_args()        
-        print(data)
+        print(data,flush=True)
+        start=time.time()
+        print(f"before save {start}",flush=True)
         for data in data["inputs"]:
             user=UserModel(data["name"],data["age"],data["count"],data["marks"])
             user.saveToDb()
-        
+        print(f"after save {time.time()-start}",flush=True)
 
         return  {"message":"users added"}
         user=UserModel(data["name"],data["age"])
