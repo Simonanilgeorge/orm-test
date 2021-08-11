@@ -38,9 +38,15 @@ class UserResource(Resource):
         print(data,flush=True)
         start=time.time()
         print(f"before save {start}",flush=True)
-        for data in data["inputs"]:
-            user=UserModel(data["name"],data["age"],data["count"],data["marks"])
-            user.saveToDb()
+
+        objects=[UserModel(user["name"],user["age"],user["count"],user["marks"]) for user in data["inputs"]]
+        print(objects,flush=True)
+        # for data in data["inputs"]:
+        #     user=UserModel(data["name"],data["age"],data["count"],data["marks"])
+        #     user.saveToDb()
+
+        
+        UserModel.saveToDb(objects)
         print(f"after save {time.time()-start}",flush=True)
 
         return  {"message":"users added"}

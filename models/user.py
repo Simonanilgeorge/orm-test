@@ -27,9 +27,11 @@ class UserModel(db.Model):
         self.marks=marks
 
 # method to add to db
-    def saveToDb(self):
+    @classmethod
+    def saveToDb(cls,objects):
        
-        db.session.add(self)    
+        # db.session.add(self)  
+        db.session.bulk_save_objects(objects)  
         db.session.commit()
 
 # method to delete from db
