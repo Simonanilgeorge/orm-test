@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
 from resources.user import UserResource
+from resources.register import RegisterResource
 from resources.store import StoreResource,SingleStoreResource
 
 from models.user import UserModel
@@ -35,6 +36,7 @@ def create_tables():
 
 # add resources
 api.add_resource(UserResource,'/api/users')
+api.add_resource(RegisterResource,'/api/register')
 api.add_resource(StoreResource,'/api/stores')
 api.add_resource(SingleStoreResource,"/api/stores/<string:id>")
 

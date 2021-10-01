@@ -5,6 +5,7 @@ from flask import jsonify
 import datetime
 from sqlalchemy import func
 from sqlalchemy.sql import alias,select
+# from passlib.apps import custom_app_context as pwd_context
 
 
 class UserModel(db.Model):
@@ -18,6 +19,7 @@ class UserModel(db.Model):
     age=db.Column(db.Integer)
     count=db.Column(db.Boolean)
     marks=db.Column(db.Float)
+    password_hash=db.Column(db.String(80))
     # date=db.Column(db.Date,default=datetime.datetime.now())
 
     def __init__(self,name,age,count,marks):
@@ -26,6 +28,15 @@ class UserModel(db.Model):
         self.count=count
         self.marks=marks
 
+
+    # method to hash the password
+    # this method is called when a new user is registering or when a user changes the password
+    def hash_password(self, password):
+        self.password_hash = pwd_context.encrypt(password)
+
+    # method to verify the password;method is called when user provides credentials
+    def verify_password(self, password):
+        return pwd_context.verify(password, self.password_hash)
 # method to add to db
     @classmethod
     def saveToDb(cls,objects):
